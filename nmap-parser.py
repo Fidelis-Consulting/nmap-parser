@@ -22,20 +22,7 @@ def report_parser(report):
             if len(host.hostnames) != 0:
                 hostname = host.hostnames[0]
 
-            print '[*] {0} - {1}'.format(ip, hostname)
-
-            # Get the port and service
-            # objects in host.services are NmapService objects
-            for s in host.services:
-
-                # Check if port is open
-                if s.open():
-                    serv = s.service
-                    port = s.port
-                    ban = s.banner
-
-                    # Perform some action on the data
-                    print_data(ip, port, serv, ban)
+            print '\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\"'.format(ip, hostname,host.mac,host.vendor,host.os_class_probabilities(),host.services)
 
 def print_data(ip, port, serv, ban):
     ''' Do something with the nmap data '''
@@ -50,3 +37,4 @@ def main():
     report_parser(report)
 
 main()
+
