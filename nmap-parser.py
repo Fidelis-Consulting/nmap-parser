@@ -8,7 +8,6 @@ def parse_args():
     ''' Create the arguments '''
     parser = argparse.ArgumentParser()
     parser.add_argument("-x", "--nmapxml", help="Nmap XML file to parse")
-    parser.add_argument("-l", "--hostlist", help="Host list file")
     return parser.parse_args()
 
 def report_parser(report):
@@ -23,13 +22,6 @@ def report_parser(report):
                 hostname = host.hostnames[0]
 
             print '\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\"'.format(ip, hostname,host.mac,host.vendor,host.os_class_probabilities(),host.services)
-
-def print_data(ip, port, serv, ban):
-    ''' Do something with the nmap data '''
-    if ban != '':
-        ban = ' -- {0}'.format(ban)
-
-    print '    {0}: {1}{2}'.format(port, serv, ban)
 
 def main():
     args = parse_args()
